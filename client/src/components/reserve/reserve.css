@@ -1,0 +1,234 @@
+/* Reserve Modal */
+.reserve {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.418
+  ); /* Slightly transparent dark overlay */
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Ensures modal appears on top */
+  padding: 20px; /* Adds padding around the container */
+  box-sizing: border-box;
+}
+
+/* Reserve Container */
+.rContainer {
+  background-color: white;
+  padding: 20px;
+  position: relative;
+  max-width: 800px;
+  width: 100%;
+  border-radius: 10px; /* Rounded corners for modern look */
+  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1); /* Subtle shadow around modal */
+  overflow-y: auto;
+  max-height: 80%; /* Prevents overflow */
+}
+
+/* Close Button (X) */
+.rClose {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  font-size: 20px;
+  color: #333; /* Dark color for the close button */
+}
+
+/* Room Item Container */
+.rItem {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 20px;
+}
+
+/* Room Information */
+.rInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-family: "Roboto", sans-serif;
+}
+
+.rTitle {
+  font-weight: 500;
+  font-size: 18px;
+  color: #333; /* Dark color for titles */
+}
+
+.rDesc {
+  font-weight: 300;
+  font-size: 14px;
+  color: #555; /* Lighter color for descriptions */
+  line-height: 1.5;
+}
+
+.rMax {
+  font-size: 13px;
+  color: #777;
+}
+
+.rPrice {
+  font-weight: 500;
+  font-size: 16px;
+  color: #0071c2; /* Blue color for prices */
+}
+
+/* Select Rooms Section */
+.rSelectRooms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 15px;
+  font-size: 14px;
+  color: #555;
+}
+
+.room {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.room label {
+  font-size: 14px;
+  color: #333;
+}
+
+input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+/* Reserve Now Button */
+.rButton {
+  border: none;
+  padding: 12px 25px;
+  background-color: #0071c2;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 100%;
+  margin-top: 20px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.rButton:hover {
+  background-color: #005fa3; /* Darker shade on hover */
+}
+
+/* Responsive Design for Small Screens */
+@media (max-width: 768px) {
+  .rContainer {
+    width: 100%;
+    padding: 15px;
+    max-height: 90%;
+  }
+
+  .rItem {
+    gap: 10px;
+  }
+
+  .rTitle {
+    font-size: 16px;
+  }
+
+  .rDesc {
+    font-size: 13px;
+  }
+
+  .rMax {
+    font-size: 12px;
+  }
+
+  .rPrice {
+    font-size: 14px;
+  }
+
+  .rSelectRooms {
+    gap: 10px;
+  }
+
+  .room label {
+    font-size: 13px;
+  }
+
+  .rButton {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .rContainer {
+    padding: 10px;
+  }
+
+  .rItem {
+    gap: 5px;
+  }
+
+  .rTitle {
+    font-size: 14px;
+  }
+
+  .rDesc {
+    font-size: 12px;
+  }
+
+  .rMax {
+    font-size: 10px;
+  }
+
+  .rPrice {
+    font-size: 12px;
+  }
+
+  .rSelectRooms {
+    gap: 5px;
+  }
+
+  .room label {
+    font-size: 12px;
+  }
+
+  .rButton {
+    font-size: 12px;
+  }
+}
+.s1 {
+  font-weight: 700;
+  font-size: 35px;
+  gap: 2;
+  /* margin-left: 20px; */
+  /* cursor: pointer; */
+  color: #141413;
+}
+.totalPrice {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.totalAmount {
+  font-size: 20px;
+  color: #0071c2;
+  font-weight: 700;
+}

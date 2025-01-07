@@ -1,0 +1,62 @@
+/* @import Google Fonts into your CSS */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Lora:wght@700&display=swap");
+
+/* Main container */
+.homeContainer {
+  font-family: "Times New Roman", Times, serif;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Hover effect for the entire homeContainer */
+.homeContainer:hover {
+  transform: translateY(-10px); /* Slight upward movement on hover */
+}
+
+/* Title styling */
+.homeTitle {
+  font-family: "Times New Roman", Times, serif;
+  width: 1024px;
+  font-size: 30px;
+  font-weight: bold;
+  color: #333;
+  letter-spacing: 1px; /* Add some spacing between letters for a modern look */
+  position: relative;
+  transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for color and transform */
+  padding: 5px;
+}
+
+/* Hover effect for the title */
+.homeTitle:hover {
+  color: #ff6600; /* Change the text color to a vibrant color */
+  transform: scale(1.05); /* Slight scale effect for emphasis */
+}
+
+/* Add a custom underline effect that appears on hover */
+.homeTitle::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #003580;
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform 0.3s ease;
+}
+
+/* Hover effect on the title to animate the underline */
+.homeTitle:hover::before {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Optional - Adding a subtle shadow effect on hover for the homeContainer */
+.homeContainer:hover {
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1); /* Subtle shadow when hovered */
+}
