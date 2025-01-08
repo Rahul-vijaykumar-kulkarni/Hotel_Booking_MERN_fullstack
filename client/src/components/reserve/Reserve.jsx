@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 const Reserve = ({ setOpen, hotelId }) => {
   const [selectedRooms, setSelectedRooms] = useState([]);
+  // eslint-disable-next-line
   const { data, loading, error } = useFetch(`/hotels/room/${hotelId}`);
   const { dates } = useContext(SearchContext);
 
@@ -40,6 +41,8 @@ const Reserve = ({ setOpen, hotelId }) => {
   };
 
   //  total price function and selection
+
+  // eslint-disable-next-line
   const [totalPrice, setTotalPrice] = useState(0);
 
   const handleSelect = (e) => {
