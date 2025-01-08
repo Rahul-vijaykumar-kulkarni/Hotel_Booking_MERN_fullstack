@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
+
 import "./reserve.css";
 import useFetch from "../../hooks/useFetch";
 import { useContext, useState } from "react";
@@ -9,14 +10,15 @@ import { useNavigate } from "react-router-dom";
 
 const Reserve = ({ setOpen, hotelId }) => {
   const [selectedRooms, setSelectedRooms] = useState([]);
-  const { data } = useFetch(`/hotels/room/${hotelId}`);
+  const { data, loading, error } = useFetch(`/hotels/room/${hotelId}`);
   const { dates } = useContext(SearchContext);
 
-  // Get the dates in the range selected by the user
   const getDatesInRange = (startDate, endDate) => {
     const start = new Date(startDate);
     const end = new Date(endDate);
+
     const date = new Date(start.getTime());
+
     const dates = [];
 
     while (date <= end) {
@@ -29,26 +31,27 @@ const Reserve = ({ setOpen, hotelId }) => {
 
   const alldates = getDatesInRange(dates[0].startDate, dates[0].endDate);
 
-  // Check if the room is available for the selected dates
   const isAvailable = (roomNumber) => {
     const isFound = roomNumber.unavailableDates.some((date) =>
       alldates.includes(new Date(date).getTime())
     );
+
     return !isFound;
   };
 
-  // Handle room selection or deselection
+  //  total price function and selection
+  const [totalPrice, setTotalPrice] = useState(0);
+
   const handleSelect = (e) => {
     const checked = e.target.checked;
     const roomId = e.target.value;
 
-    // Find the room type and use the base price from the main room type
     const roomType = data.find((item) =>
       item.roomNumbers.some((room) => room._id === roomId)
     );
 
     if (roomType) {
-      const basePrice = roomType.price; // Use the base price for the room type
+      const basePrice = roomType.price;
       if (checked) {
         setSelectedRooms((prev) => [...prev, { roomId, price: basePrice }]);
       } else {
@@ -57,6 +60,10 @@ const Reserve = ({ setOpen, hotelId }) => {
         );
       }
     }
+
+    // Recalculate total price and update the state
+    const newTotalPrice = calculateTotalPrice();
+    setTotalPrice(newTotalPrice);
   };
 
   const calculateTotalPrice = () => {
@@ -68,7 +75,7 @@ const Reserve = ({ setOpen, hotelId }) => {
         }
         return total;
       }, 0) * alldates.length
-    ); // Multiply by the number of days selected
+    );
   };
 
   const navigate = useNavigate();
@@ -76,8 +83,8 @@ const Reserve = ({ setOpen, hotelId }) => {
   const handleClick = async () => {
     try {
       await Promise.all(
-        selectedRooms.map((room) => {
-          const res = axios.put(`/rooms/availability/${room.roomId}`, {
+        selectedRooms.map((roomId) => {
+          const res = axios.put(`/rooms/availability/${roomId}`, {
             dates: alldates,
           });
           return res.data;
@@ -85,11 +92,8 @@ const Reserve = ({ setOpen, hotelId }) => {
       );
       setOpen(false);
       navigate("/");
-    } catch (err) {
-      console.error(err);
-    }
+    } catch (err) {}
   };
-
   return (
     <div className="reserve">
       <div className="rContainer">
@@ -98,7 +102,7 @@ const Reserve = ({ setOpen, hotelId }) => {
           className="rClose"
           onClick={() => setOpen(false)}
         />
-        <span className="s1">Select your rooms:</span>
+        <span>Select your rooms:</span>
         {data.map((item) => (
           <div className="rItem" key={item._id}>
             <div className="rItemInfo">
@@ -107,11 +111,11 @@ const Reserve = ({ setOpen, hotelId }) => {
               <div className="rMax">
                 Max people: <b>{item.maxPeople}</b>
               </div>
-              <div className="rPrice">$ {item.price}</div>
+              <div className="rPrice">{item.price}</div>
             </div>
             <div className="rSelectRooms">
               {item.roomNumbers.map((roomNumber) => (
-                <div className="room" key={roomNumber._id}>
+                <div className="room">
                   <label>{roomNumber.number}</label>
                   <input
                     type="checkbox"
@@ -124,13 +128,6 @@ const Reserve = ({ setOpen, hotelId }) => {
             </div>
           </div>
         ))}
-
-        {/* Display Total Price */}
-        <div className="totalPrice">
-          <span>Total Price: </span>
-          <span className="totalAmount">$ {calculateTotalPrice()} </span>
-        </div>
-
         <button onClick={handleClick} className="rButton">
           Reserve Now!
         </button>
