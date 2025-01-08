@@ -2,7 +2,8 @@ import useFetch from "../../hooks/useFetch";
 import "./featured.css";
 
 const Featured = () => {
-  const { data, loading } = useFetch(
+  // eslint-disable-next-line
+  const { data, loading,error } = useFetch(
     "/hotels/countByCity?cities=bengaluru,goa,mumbai"
   );
 
