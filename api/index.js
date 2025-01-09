@@ -8,7 +8,7 @@ import roomsRoute from "./routes/rooms.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
-const 
+
 
 const app = express();
 
