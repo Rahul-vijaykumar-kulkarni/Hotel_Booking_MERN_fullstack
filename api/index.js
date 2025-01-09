@@ -59,7 +59,8 @@ app.use((err, req, res, next) => {
 // });
 
 
-app.listen(8800, () => {
+const PORT = process.env.PORT || 8800;  // Fallback to 8800 if not available in environment
+app.listen(PORT, () => {
   connect();
-  console.log("Connected to backend at port 8800.");
+  console.log(`Backend server connected at port ${PORT}.`);
 });
