@@ -2,7 +2,9 @@
 
 Welcome to **Book My Stay**, a modern hotel booking platform built with the **MERN Stack** (MongoDB, Express, React, Node.js). This full-stack application allows users to search for hotels in various cities, explore different property types, and view featured hotels. Additionally, there is an **Admin Panel** that provides management features for administrators to view users and hotel listings.
 
-🔗 **Visit the live website**: [Book My Stay](https://hotel-booking-mern-fullstack.onrender.com/)
+<a href="https://hotel-booking-mern-fullstack.onrender.com/" target="_blank"> Visit the live website: Book My Stay </a>
+
+
 
 ---
 
